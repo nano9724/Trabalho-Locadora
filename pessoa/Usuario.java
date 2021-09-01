@@ -90,6 +90,23 @@ public class Usuario extends Pessoa implements Serializable{
     public String toString(){
     return String.format("%s\t%s", this.nome, this.cpf); //int %d\t; string %s\t
     }   
+	
+	 /*    
+    public void logar(){
+	        Scanner input = new Scanner(System.in);
+	        System.out.println("Insira o seu login.");
+	        String login = input.nextLine();
+	        System.out.println("Insira a sua senha.");
+	        String senha = input.nextLine();
+
+	        if(login.equals(this.getLogin()) && senha.equals(this.getSenha())) {
+	            System.out.println("Olá " + this.getNome() + " seja bem vindo ao Vapor!");
+	        }
+	        else{
+	            System.out.println("Senha incorreta, por favor tente novamente.");
+	            logar();
+	        }
+	    }*/
         
         
 }
