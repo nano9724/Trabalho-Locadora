@@ -2,7 +2,7 @@ package locadora;
 
 import java.io.Serializable;
 
-public class Jogo{
+public class Jogo implements Serializable{
 	  String nome, tipo;
 	  int classificao;
 
@@ -10,5 +10,9 @@ public class Jogo{
 	    this.nome=nome;
 	    this.tipo=tipo;
 	    this.classificao=classificao;
+	  }
+	  
+	  Jogo(){
+		  
 	  }
 }
