@@ -70,8 +70,58 @@ public class Locacoes implements Serializable{
 		}
 
 	}
-	void devolucao(Jogo j, Usuario u){
-
+	public static void devolucao(){
+		FileInputStream fluxo;
+		FileInputStream fluxo2;
+		FileOutputStream fluxo3;
+		FileOutputStream fluxo4;
+		int i,num;
+		try {
+			fluxo= new FileInputStream("alug.ser");
+			ObjectInputStream objarq;
+			objarq = new ObjectInputStream(fluxo);
+			Alugados.clear();
+			Alugados.addAll((ArrayList<Jogo>)objarq.readObject());
+			for(i=0;i<Alugados.size();i++) {
+				System.out.println(i+": "+Alugados.get(i).nome+" "+Alugados.get(i).tipo+" "+Alugados.get(i).classificao);
+			}	
+			System.out.println("Digite o numero do jogo que voce quer devolver");
+			Scanner entrada=new Scanner(System.in);
+			num=entrada.nextInt();
+			Jogo req= new Jogo();
+			req=Alugados.get(num);
+			Alugados.remove(num);
+			fluxo2= new FileInputStream("dispon.ser");
+			ObjectInputStream objarq2;
+			objarq2 = new ObjectInputStream(fluxo2);			
+			Disponiveis.clear();
+			Disponiveis.addAll((ArrayList<Jogo>)objarq2.readObject());			
+			Disponiveis.add(req);
+			fluxo3= new FileOutputStream("dispon.ser");
+			ObjectOutputStream objarq3;
+			objarq3 = new ObjectOutputStream(fluxo3);
+			objarq3.writeObject(Disponiveis);
+			fluxo4= new FileOutputStream("alug.ser");
+			ObjectOutputStream objarq4;
+			objarq4 = new ObjectOutputStream(fluxo4);
+			objarq4.writeObject(Alugados);
+			objarq.close();
+			objarq2.close();
+			objarq3.close();
+			objarq4.close();
+			
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public static void addJogo(Jogo j) {
@@ -133,11 +183,14 @@ public class Locacoes implements Serializable{
 	public static void leDisp() {
 		FileInputStream fluxo;
 		try {
+			int i;
 			fluxo= new FileInputStream("dispon.ser");
 			ObjectInputStream objarq;
 			objarq = new ObjectInputStream(fluxo);
 			Disponiveis=(ArrayList<Jogo>)objarq.readObject();
-			System.out.println("Objeto lido\n"+Disponiveis.get(0).nome);
+			for(i=0;i<Disponiveis.size();i++) {
+				System.out.println(i+": "+Disponiveis.get(i).nome+" "+Disponiveis.get(i).tipo+" "+Disponiveis.get(i).classificao);
+			}
 			objarq.close();
 
 
@@ -159,11 +212,14 @@ public class Locacoes implements Serializable{
 	public static void leAlug() {
 		FileInputStream fluxo;
 		try {
+			int i;
 			fluxo= new FileInputStream("alug.ser");
 			ObjectInputStream objarq;
 			objarq = new ObjectInputStream(fluxo);
 			Disponiveis=(ArrayList<Jogo>)objarq.readObject();
-			System.out.println("Objeto lido\n"+Disponiveis.get(0).nome);
+			for(i=0;i<Alugados.size();i++) {
+				System.out.println(i+": "+Alugados.get(i).nome+" "+Alugados.get(i).tipo+" "+Alugados.get(i).classificao);
+			}
 			objarq.close();
 
 
