@@ -8,15 +8,30 @@ import locadora.Jogo;
 import locadora.Locacoes;
 
 public class Usuario extends Pessoa implements Serializable{
-       private String nome, login,senha, email,cpf;
+       private String nome, login,senha, email,cpf, caminhoUsuario, caminhoJogos;
        private int pontoFidelidade;
-       private String caminho="alugueisUsuario.txt";
-       private List <Jogo> locacoes=new ArrayList <Jogo>();
+       private Conta conta;
+       List <Jogo> locacoes=new ArrayList <Jogo>();
 
 	public Usuario(String nome, String cpf, String login, String senha){
 		super(nome,cpf,login,senha);
-		this.arq=login.concat(".ser");
-        }
+                this.conta=new Conta();
+                this.caminhoUsuario=login.concat("User.ser");
+                File arquivo= new File(caminhoUsuario);
+                    if (!arquivo.exists()){
+                        try{
+                        arquivo.createNewFile();
+                         }catch(Exception e)
+                            {e.printStackTrace();}
+                        
+                this.caminhoUsuario=login.concat("Jogos.ser");
+                File arquivoJogo= new File(caminhoJogos);
+                    if (!arquivo.exists()){
+                        try{
+                        arquivo.createNewFile();
+                         }catch(Exception e)
+                            {e.printStackTrace();}        
+        }}}
         
     void alugar(){
 	    Locacoes loc=new Locacoes ();
@@ -88,10 +103,7 @@ public class Usuario extends Pessoa implements Serializable{
     public int getPontoFidelidade() {
         return pontoFidelidade;
     }
-
-    public String getArq() {
-	return this.arq;
-    }        
+        
      @Override
     public String toString(){
     return String.format("%s\t%s", this.nome, this.cpf); //int %d\t; string %s\t
