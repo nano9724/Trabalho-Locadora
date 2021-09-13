@@ -5,7 +5,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import locadora.Jogo;
-
+import locadora.Locacoes;
 
 public class Usuario extends Pessoa implements Serializable{
        private String nome, login,senha, email,cpf;
@@ -18,11 +18,12 @@ public class Usuario extends Pessoa implements Serializable{
         }
         
     void alugar(Jogo j){
-     this.locacoes.addAll((ArrayList <Jogo>)FileUtil.gravarObjeto(j, caminho));
+	    
+     this.locacoes.addAll((ArrayList <Jogo>)Arquivo.gravarObjeto(j, caminho));
     }
     
     public Jogo procurarAluguel(Jogo j){
-    ArrayList<Jogo> obj= (ArrayList<Jogo>) FileUtil.recuperarObjeto(caminho);
+    ArrayList<Jogo> obj= (ArrayList<Jogo>) Arquivo.recuperarObjeto(caminho);
         
     for(Jogo jogo: obj){
                 if (jogo.getId()==j.getId()){
@@ -31,7 +32,7 @@ public class Usuario extends Pessoa implements Serializable{
 }
     
     void verAlugueis(){
-        ArrayList<Jogo> obj= (ArrayList<Jogo>) FileUtil.recuperarObjeto(caminho);
+        ArrayList<Jogo> obj= (ArrayList<Jogo>) Arquivo.recuperarObjeto(caminho);
         
             for(Jogo jogo: obj){
                 jogo.toString();
