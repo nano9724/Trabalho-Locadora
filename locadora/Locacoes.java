@@ -16,7 +16,7 @@ public class Locacoes implements Serializable{
 	static ArrayList<Jogo> Disponiveis= new ArrayList<Jogo>();
 	static ArrayList<Jogo> Alugados= new ArrayList<Jogo>();
 
-	public static void locar(String usur){
+	public static void locar(Usuario usur){
 		FileInputStream fluxo;
 		FileInputStream fluxo2;
 		FileOutputStream fluxo3;
@@ -29,7 +29,7 @@ public class Locacoes implements Serializable{
 			Disponiveis.clear();
 			Disponiveis.addAll((ArrayList<Jogo>)objarq.readObject());
 			for(i=0;i<Disponiveis.size();i++) {
-				System.out.println(i+": "+Disponiveis.get(i).nome+" "+Disponiveis.get(i).tipo+" "+Disponiveis.get(i).classificao);
+				System.out.println(i+": "+Alugados.get(i).getNome()+" "+Alugados.get(i).getTipo()+" "+Alugados.get(i).getClassificacao()+" "+Alugados.get(i).getPreco());
 			}
 			System.out.println("Digite o numero do jogo que voce quer");
 			Scanner entrada=new Scanner(System.in);
@@ -37,7 +37,7 @@ public class Locacoes implements Serializable{
 			Jogo req= new Jogo();
 			req=Disponiveis.get(num);
 			Disponiveis.remove(num);
-			fluxo2= new FileInputStream(usur);
+			fluxo2= new FileInputStream(usur.getArq());
 			ObjectInputStream objarq2;
 			objarq2 = new ObjectInputStream(fluxo2);
 			Alugados.clear();
@@ -47,7 +47,7 @@ public class Locacoes implements Serializable{
 			ObjectOutputStream objarq3;
 			objarq3 = new ObjectOutputStream(fluxo3);
 			objarq3.writeObject(Disponiveis);
-			fluxo4= new FileOutputStream(usur);
+			fluxo4= new FileOutputStream(usur.getArq());
 			ObjectOutputStream objarq4;
 			objarq4 = new ObjectOutputStream(fluxo4);
 			objarq4.writeObject(Alugados);
@@ -70,20 +70,20 @@ public class Locacoes implements Serializable{
 		}
 
 	}
-	public static void devolucao(String usur){
+	public static void devolucao(Usuario usur){
 		FileInputStream fluxo;
 		FileInputStream fluxo2;
 		FileOutputStream fluxo3;
 		FileOutputStream fluxo4;
 		int i,num;
 		try {
-			fluxo= new FileInputStream(usur);
+			fluxo= new FileInputStream(usur.getArq());
 			ObjectInputStream objarq;
 			objarq = new ObjectInputStream(fluxo);
 			Alugados.clear();
 			Alugados.addAll((ArrayList<Jogo>)objarq.readObject());
 			for(i=0;i<Alugados.size();i++) {
-				System.out.println(i+": "+Alugados.get(i).nome+" "+Alugados.get(i).tipo+" "+Alugados.get(i).classificao);
+				System.out.println(i+": "+Alugados.get(i).getNome()+" "+Alugados.get(i).getTipo()+" "+Alugados.get(i).getClassificacao()+" "+Alugados.get(i).getPreco());
 			}	
 			System.out.println("Digite o numero do jogo que voce quer devolver");
 			Scanner entrada=new Scanner(System.in);
@@ -101,7 +101,7 @@ public class Locacoes implements Serializable{
 			ObjectOutputStream objarq3;
 			objarq3 = new ObjectOutputStream(fluxo3);
 			objarq3.writeObject(Disponiveis);
-			fluxo4= new FileOutputStream(usur);
+			fluxo4= new FileOutputStream(usur.getArq());
 			ObjectOutputStream objarq4;
 			objarq4 = new ObjectOutputStream(fluxo4);
 			objarq4.writeObject(Alugados);
@@ -189,7 +189,7 @@ public class Locacoes implements Serializable{
 			objarq = new ObjectInputStream(fluxo);
 			Disponiveis=(ArrayList<Jogo>)objarq.readObject();
 			for(i=0;i<Disponiveis.size();i++) {
-				System.out.println(i+": "+Disponiveis.get(i).nome+" "+Disponiveis.get(i).tipo+" "+Disponiveis.get(i).classificao);
+				System.out.println(i+": "+Alugados.get(i).getNome()+" "+Alugados.get(i).getTipo()+" "+Alugados.get(i).getClassificacao()+" "+Alugados.get(i).getPreco());
 			}
 			objarq.close();
 
@@ -209,16 +209,16 @@ public class Locacoes implements Serializable{
 
 
 	}
-	public static void leAlug(String usur) {
+	public static void leAlug(Usuario usur) {
 		FileInputStream fluxo;
 		try {
 			int i;
-			fluxo= new FileInputStream(usur);
+			fluxo= new FileInputStream(usur.getArq());
 			ObjectInputStream objarq;
 			objarq = new ObjectInputStream(fluxo);
 			Disponiveis=(ArrayList<Jogo>)objarq.readObject();
 			for(i=0;i<Alugados.size();i++) {
-				System.out.println(i+": "+Alugados.get(i).nome+" "+Alugados.get(i).tipo+" "+Alugados.get(i).classificao);
+				System.out.println(i+": "+Alugados.get(i).getNome()+" "+Alugados.get(i).getTipo()+" "+Alugados.get(i).getClassificacao()+" "+Alugados.get(i).getPreco());
 			}
 			objarq.close();
 
