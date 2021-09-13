@@ -29,7 +29,7 @@ public class Locacoes implements Serializable{
 			Disponiveis.clear();
 			Disponiveis.addAll((ArrayList<Jogo>)objarq.readObject());
 			for(i=0;i<Disponiveis.size();i++) {
-				System.out.println(i+": "+Alugados.get(i).getNome()+" "+Alugados.get(i).getTipo()+" "+Alugados.get(i).getClassificacao()+" "+Alugados.get(i).getPreco());
+				System.out.println(i+": "+Disponiveis.get(i).getNome()+" "+Disponiveis.get(i).getTipo()+" "+Disponiveis.get(i).getClassificacao()+" "+Disponiveis.get(i).getPreco());
 			}
 			System.out.println("Digite o numero do jogo que voce quer");
 			Scanner entrada=new Scanner(System.in);
@@ -189,7 +189,7 @@ public class Locacoes implements Serializable{
 			objarq = new ObjectInputStream(fluxo);
 			Disponiveis=(ArrayList<Jogo>)objarq.readObject();
 			for(i=0;i<Disponiveis.size();i++) {
-				System.out.println(i+": "+Alugados.get(i).getNome()+" "+Alugados.get(i).getTipo()+" "+Alugados.get(i).getClassificacao()+" "+Alugados.get(i).getPreco());
+				System.out.println(i+": "+Disponiveis.get(i).getNome()+" "+Disponiveis.get(i).getTipo()+" "+Disponiveis.get(i).getClassificacao()+" "+Disponiveis.get(i).getPreco());
 			}
 			objarq.close();
 
