@@ -11,14 +11,15 @@ public class Usuario extends Pessoa implements Serializable{
        private String nome, login,senha, email,cpf;
        private int pontoFidelidade;
        private String caminho="alugueisUsuario.txt";
-       List <Jogo> locacoes=new ArrayList <Jogo>();
+       private List <Jogo> locacoes=new ArrayList <Jogo>();
 
 	public Usuario(String nome, String cpf, String login, String senha){
 		super(nome,cpf,login,senha);
         }
         
-    void alugar(Jogo j){
-	    
+    void alugar(){
+	    Locacoes loc=new Locacoes ();
+        	Jogo j=loc.locar();//locar poderia retornar o Jogo alugado
      this.locacoes.addAll((ArrayList <Jogo>)Arquivo.gravarObjeto(j, caminho));
     }
     
