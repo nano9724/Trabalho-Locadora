@@ -10,7 +10,7 @@ public class Jogo implements Serializable{
 	  Jogo(String nome, String tipo, int classificao, double preco){
 	    this.nome=nome;
 	    this.tipo=tipo;
-	    this.classificao=classificao;
+	    this.classificacao=classificao;
 	    this.preco=preco;
 	  }
 	  
