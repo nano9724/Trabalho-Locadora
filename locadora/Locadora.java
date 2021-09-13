@@ -8,20 +8,40 @@ import pessoa.Usuario;
 
 public class Locadora {
    
-   Object locInit(Usuario u){
+   Object locInit(){
+      System.out.println("*** Login ***");
+      System.out.println("*** Digite o Login ***");
+      Scanner teclado =new Scanner(System.in);
+      String log=teclado.nextString();
+      System.out.println("*** Digite a Senha ***");
+      String senha=teclado.nextString();
+    
       for(Usuario us: usuarios)
-         if (u.equals)
+         usuarios.clear();
+			usuarios.addAll((ArrayList<Usuario>)Arquivo.readObject());
+			for(i=0;i<usuarios.size();i++) {
+				if(usuarios.login(log, senha))
+               //menu usuário
+			}	
       
-      u.logar();
-      return u;
+      for(Funcionario fun: funcionarios)
+         funcionarios.clear();
+			funcionarios.addAll((ArrayList<Funcionario>)Arquivo.recuperarObjeto());
+			for(i=0;i<usuarios.size();i++) {
+				if(usuarios.login(log, senha))
+      
+   
+      
    }
+   
+   
    
    
    
    public static void main(String[] args){
        String caminhoUsuarios="usuarios.txt";
        ArrayList <Usuario>usuarios=new ArrayList<Usuario>();
-      
+         ArrayList <Funcionario>funcionarios=new ArrayList<Funcionario>();
       
       System.out.println("*** Locadora de Jogos ***");
       System.out.println("*** Escolha o tipo de Usuário ***");
@@ -29,8 +49,7 @@ public class Locadora {
       int opt=0
       while(true){
       
-         switch (opt){
-            case 1:
+         
                
          
          }
