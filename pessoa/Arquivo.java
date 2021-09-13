@@ -10,7 +10,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 
-public class FileUtil {
+public class Arquivo {
     
     public static Object gravarObjeto(Object obj, String caminho){
         File arquivo= new File(caminho);
