@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class Jogo implements Serializable{
 	  String nome, tipo;
-	  int classificao;
+	  int classificacao;
 	  double preco;
 
 	  Jogo(String nome, String tipo, int classificao, double preco){
@@ -16,5 +16,18 @@ public class Jogo implements Serializable{
 	  
 	  Jogo(){
 		  
+	  }
+	  
+	  public String getNome() {
+		  return this.nome;
+	  }
+	  public String getTipo() {
+		  return this.tipo;
+	  }
+	  public int getClassificacao() {
+		  return this.classificacao;
+	  }
+	  public double getPreco() {
+		  return this.preco;
 	  }
 }
