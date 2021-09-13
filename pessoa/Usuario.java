@@ -110,6 +110,19 @@ public class Usuario extends Pessoa implements Serializable{
 	            logar();
 	        }
 	    }
+	
+	
+	
+	public boolean logar(String login, String senha){
+	         if(login.equals(this.getLogin()) && senha.equals(this.getSenha())) {
+	            System.out.println("Olá " + this.getNome() + " seja bem vindo ao Vapor!");
+		    return true;
+	        }
+	        else{
+	            System.out.println("Senha incorreta, por favor tente novamente.");
+	            logar();
+	        }
+	    }
         
         
 }
