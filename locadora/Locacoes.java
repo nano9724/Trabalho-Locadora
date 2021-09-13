@@ -16,7 +16,7 @@ public class Locacoes implements Serializable{
 	static ArrayList<Jogo> Disponiveis= new ArrayList<Jogo>();
 	static ArrayList<Jogo> Alugados= new ArrayList<Jogo>();
 
-	public static void locar(){
+	public static void locar(String usur){
 		FileInputStream fluxo;
 		FileInputStream fluxo2;
 		FileOutputStream fluxo3;
@@ -37,7 +37,7 @@ public class Locacoes implements Serializable{
 			Jogo req= new Jogo();
 			req=Disponiveis.get(num);
 			Disponiveis.remove(num);
-			fluxo2= new FileInputStream("alug.ser");
+			fluxo2= new FileInputStream(usur);
 			ObjectInputStream objarq2;
 			objarq2 = new ObjectInputStream(fluxo2);
 			Alugados.clear();
@@ -47,7 +47,7 @@ public class Locacoes implements Serializable{
 			ObjectOutputStream objarq3;
 			objarq3 = new ObjectOutputStream(fluxo3);
 			objarq3.writeObject(Disponiveis);
-			fluxo4= new FileOutputStream("alug.ser");
+			fluxo4= new FileOutputStream(usur);
 			ObjectOutputStream objarq4;
 			objarq4 = new ObjectOutputStream(fluxo4);
 			objarq4.writeObject(Alugados);
@@ -70,14 +70,14 @@ public class Locacoes implements Serializable{
 		}
 
 	}
-	public static void devolucao(){
+	public static void devolucao(String usur){
 		FileInputStream fluxo;
 		FileInputStream fluxo2;
 		FileOutputStream fluxo3;
 		FileOutputStream fluxo4;
 		int i,num;
 		try {
-			fluxo= new FileInputStream("alug.ser");
+			fluxo= new FileInputStream(usur);
 			ObjectInputStream objarq;
 			objarq = new ObjectInputStream(fluxo);
 			Alugados.clear();
@@ -101,7 +101,7 @@ public class Locacoes implements Serializable{
 			ObjectOutputStream objarq3;
 			objarq3 = new ObjectOutputStream(fluxo3);
 			objarq3.writeObject(Disponiveis);
-			fluxo4= new FileOutputStream("alug.ser");
+			fluxo4= new FileOutputStream(usur);
 			ObjectOutputStream objarq4;
 			objarq4 = new ObjectOutputStream(fluxo4);
 			objarq4.writeObject(Alugados);
@@ -155,7 +155,7 @@ public class Locacoes implements Serializable{
 		}
 	}
 	
-	public static void criaArquivos() {
+	public static void criaArquivos(String usur) {
 		FileOutputStream fluxo;
 		FileOutputStream fluxo2;
 		try {
@@ -164,7 +164,7 @@ public class Locacoes implements Serializable{
 			objarq = new ObjectOutputStream(fluxo);
 			Disponiveis.clear();
 			objarq.writeObject(Disponiveis);
-			fluxo2= new FileOutputStream("alug.ser");
+			fluxo2= new FileOutputStream(usur);
 			ObjectOutputStream objarq2;
 			objarq2 = new ObjectOutputStream(fluxo2);
 			Alugados.clear();
@@ -209,11 +209,11 @@ public class Locacoes implements Serializable{
 
 
 	}
-	public static void leAlug() {
+	public static void leAlug(String usur) {
 		FileInputStream fluxo;
 		try {
 			int i;
-			fluxo= new FileInputStream("alug.ser");
+			fluxo= new FileInputStream(usur);
 			ObjectInputStream objarq;
 			objarq = new ObjectInputStream(fluxo);
 			Disponiveis=(ArrayList<Jogo>)objarq.readObject();
