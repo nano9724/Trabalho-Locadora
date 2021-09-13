@@ -15,6 +15,7 @@ public class Usuario extends Pessoa implements Serializable{
 
 	public Usuario(String nome, String cpf, String login, String senha){
 		super(nome,cpf,login,senha);
+		this.arq=login.concat(".ser");
         }
         
     void alugar(){
@@ -87,7 +88,10 @@ public class Usuario extends Pessoa implements Serializable{
     public int getPontoFidelidade() {
         return pontoFidelidade;
     }
-        
+
+    public String getArq() {
+	return this.arq;
+    }        
      @Override
     public String toString(){
     return String.format("%s\t%s", this.nome, this.cpf); //int %d\t; string %s\t
