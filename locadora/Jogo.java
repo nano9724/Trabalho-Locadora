@@ -3,9 +3,9 @@ package locadora;
 import java.io.Serializable;
 
 public class Jogo implements Serializable{
-	  String nome, tipo;
-	  int classificacao;
-	  double preco;
+	  private String nome, tipo;
+	  private int classificacao;
+	  private double preco;
 
 	  Jogo(String nome, String tipo, int classificao, double preco){
 	    this.nome=nome;
