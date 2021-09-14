@@ -32,6 +32,11 @@ public class Locadora {
                   default:
                            
 }}
+    
+    public void printUsuarios(){
+     
+    
+    }
                        
             
     
@@ -42,6 +47,9 @@ public class Locadora {
        String caminhoFuncionarios="funcionarios.txt";// Estrutura para manipular todos os funcionarios
        ArrayList <Funcionario>funcionarios=new ArrayList<Funcionario>();
        
+       String caminhoJogos="jogos.txt";// Estrutura para manipular todos os Jogo (Disponpiveis ou não)* ou a gente pode fazer com que o funcionario crie as instancias de Jogo e já adicione em disponíveis 
+       ArrayList <Jogo>jogos=new ArrayList<Jogo>();
+       
        System.out.println ("****Locadora****");
        System.out.println ("****Digite o tipo de acesso****\n"+"1 - Usuário\n"+"2 - Funcionario");
        Scanner teclado=new Scanner(System.in);
@@ -49,7 +57,7 @@ public class Locadora {
       int option;
       switch (opt){
           
-          case 1: 
+          case 1: //Usuário
            
               System.out.println ("Digite:\n"+"1 - Login"+"2 - Cadastro Usuário");   
               int user=teclado.nextInt();
@@ -85,8 +93,34 @@ public class Locadora {
                                     usuarios.addAll((ArrayList<Usuario>)Arquivo.recuperarObjeto(caminhoUsuarios));
                                     usuarios.add(usuario);
                                     Arquivo.gravarObjeto(usuarios,caminhoUsuarios);
+                                
+                                
+                                
+                                
+                                
                                         }
-          case 2:   
+          case 2: //Funcionario 
+              
+              
+              System.out.println("Digite:\n"+"1 - Ver Usuários"+"2 - Cadastrar Jogo");   
+              int user=teclado.nextInt();
+                switch (user){ 
+                        
+                    case 1: 
+                        usuarios.clear();
+                        usuarios.addAll((ArrayList<Usuario>)Arquivo.recuperarObjeto(caminhoUsuarios));
+                        for(Usuarios us: usuarios)
+                             usuarios.toString();
+                        
+                    case 2: 
+                        jogos.clear();
+                        jogos.addAll((ArrayList<Jogos>)Arquivo.recuperarObjeto(caminhoJogos));
+                        Jogo newgame= new Jogo(); 
+                        jogos.add(newgame);
+                        Arquivo.gravarObjeto(jogos, caminhoJogos);
+                        
+                        
+                }
       }
       
        }}
