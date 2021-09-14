@@ -38,12 +38,11 @@ public class Usuario extends Pessoa implements Serializable{
         
         
         
-    public void alugar(){
+    public Jogo alugar(){
         Jogo newJogo= Locacoes.locar(this);
         this.locacoes.addAll((ArrayList<Jogo>) Arquivo.recuperarObjeto(caminhoJogos));
-        locacoes.add(newJogo);
-        Arquivo.gravarObjeto(locacoes, caminhoJogos);
         this.pontoFidelidade+=5;
+        return newJogo;
      }
     
     public Jogo procurarAluguel(Jogo j){
@@ -67,11 +66,10 @@ public class Usuario extends Pessoa implements Serializable{
        Locacoes.leDisp();
    }
    
-   public void devolver(){
+   public Jogo devolver(){
         Jogo game= Locacoes.devolucao(this);
         this.locacoes.addAll((ArrayList<Jogo>) Arquivo.recuperarObjeto(caminhoJogos));
-        locacoes.remove(game);
-        Arquivo.gravarObjeto(locacoes, caminhoJogos);
+        return game;
    }
         
      @Override
