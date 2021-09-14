@@ -5,7 +5,6 @@ import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 import locadora.Jogo;
 import locadora.Locacoes;
 
@@ -37,11 +36,15 @@ public class Usuario extends Pessoa implements Serializable{
         }}}
         
         
-    void alugar(Jogo j){
-        Locacoes loc=new Locacoes ();
-        loc.locar();//return jogo
-     this.locacoes.addAll((ArrayList <Jogo>)Arquivo.gravarObjeto(j, caminhoJogos));
-    }
+        
+        
+    public void alugar(){
+        Jogo newJogo= Locacoes.locar(this);
+        this.locacoes.addAll((ArrayList<Jogo>) Arquivo.recuperarObjeto(caminhoJogos));
+        locacoes.add(newJogo);
+        Arquivo.gravarObjeto(locacoes, caminhoJogos);
+        this.pontoFidelidade+=5;
+     }
     
     public Jogo procurarAluguel(Jogo j){
     ArrayList<Jogo> obj= (ArrayList<Jogo>) Arquivo.recuperarObjeto(caminhoJogos);
@@ -52,14 +55,42 @@ public class Usuario extends Pessoa implements Serializable{
     }      return null;
 }
     
-    void verAlugueis(){
+   public void verAlugueis(){
         ArrayList<Jogo> obj= (ArrayList<Jogo>) Arquivo.recuperarObjeto(caminhoJogos);
         
             for(Jogo jogo: obj){
                 jogo.toString();
             }
     }    
-
+   
+  public void pesquisarJogos(){
+       Locacoes.leDisp();
+   }
+   
+   public void devolver(){
+        Jogo game= Locacoes.devolucao(this);
+        this.locacoes.addAll((ArrayList<Jogo>) Arquivo.recuperarObjeto(caminhoJogos));
+        locacoes.remove(game);
+        Arquivo.gravarObjeto(locacoes, caminhoJogos);
+   }
+        
+     @Override
+    public String toString(){
+    return String.format("%s\t%s", this.nome, this.cpf); //int %d\t; string %s\t
+    }   
+        
+    public boolean logar(String login, String senha){
+	         if(login.equals(this.getLogin()) && senha.equals(this.getSenha())) {
+	            System.out.println("Olá " + this.getNome() + " seja bem vindo ao Vapor!");
+		    return true;
+	        }
+	        else{
+	            System.out.println("Senha incorreta, por favor tente novamente.");
+	            return false;
+	        }
+                 
+	    }
+    
     public void setNome(String nome) {
         this.nome = nome;
     }
@@ -88,6 +119,14 @@ public class Usuario extends Pessoa implements Serializable{
         return senha;
     }
 
+    public String getCaminhoUsuario() {
+        return caminhoUsuario;
+    }
+
+    public String getCaminhoJogos() {
+        return caminhoJogos;
+    }
+
     public String getCpf() {
         return cpf;
     }
@@ -107,40 +146,6 @@ public class Usuario extends Pessoa implements Serializable{
     public int getPontoFidelidade() {
         return pontoFidelidade;
     }
-        
-     @Override
-    public String toString(){
-    return String.format("%s\t%s", this.nome, this.cpf); //int %d\t; string %s\t
-    }   
-        
-    public boolean logar(){
-	        Scanner input = new Scanner(System.in);
-	        System.out.println("Insira o seu login.");
-	        String login = input.nextLine();
-	        System.out.println("Insira a sua senha.");
-	        String senha = input.nextLine();
-
-	        if(login.equals(this.getLogin()) && senha.equals(this.getSenha())) {
-	            System.out.println("Olá " + this.getNome() + " seja bem vindo ao Vapor!");
-                    return true;
-	        }
-	        else{
-	            System.out.println("Senha incorreta, por favor tente novamente.");
-	            return false;
-	        }
-	    }
-    
-    public boolean logar(String login, String senha){
-	         if(login.equals(this.getLogin()) && senha.equals(this.getSenha())) {
-	            System.out.println("Olá " + this.getNome() + " seja bem vindo ao Vapor!");
-		    return true;
-	        }
-	        else{
-	            System.out.println("Senha incorreta, por favor tente novamente.");
-	            return false;
-	        }
-                 
-	    }
     
     
         
