@@ -26,7 +26,7 @@ public class Usuario extends Pessoa implements Serializable{
                          }catch(Exception e)
                             {e.printStackTrace();}
                         
-                this.caminhoUsuario=login.concat("Jogos.ser");
+                this.caminhoJogos=login.concat("Jogos.ser");
                 File arquivoJogo= new File(caminhoJogos);
                     if (!arquivo.exists()){
                         try{
