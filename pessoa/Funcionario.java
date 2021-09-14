@@ -25,7 +25,7 @@ public class Funcionario {
 		String username = "";
 		String password = "";
 		String filepath = "account.txt";
-    criaConta();
+		criaConta();
 
 		Scanner input = new Scanner(System.in);
 		System.out.println("**** Digite o login ****");
@@ -61,7 +61,8 @@ public class Funcionario {
 				return false;
 			}
 		} catch (Exception e) {
-			System.out.println("Algum problema aconteceu, por favor tente novamente.");
+			System.out.println("Nenhuma conta de ADM encontrada, crie uma conta para acessar o menu de funcionário");
+			criaConta();
 		}
 		return found;
 	}
