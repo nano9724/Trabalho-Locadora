@@ -37,7 +37,7 @@ public class Locacoes implements Serializable{
 			Jogo req= new Jogo();
 			req=Disponiveis.get(num);
 			Disponiveis.remove(num);
-			fluxo2= new FileInputStream(usur.getArq());
+			fluxo2= new FileInputStream(usur.getCaminhoJogos());
 			ObjectInputStream objarq2;
 			objarq2 = new ObjectInputStream(fluxo2);
 			Alugados.clear();
