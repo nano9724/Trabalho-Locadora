@@ -217,10 +217,10 @@ public class Locacoes implements Serializable{
 		FileInputStream fluxo;
 		try {
 			int i;
-			fluxo= new FileInputStream(usur.getArq());
+			fluxo= new FileInputStream(usur.getCaminhoJogos());
 			ObjectInputStream objarq;
 			objarq = new ObjectInputStream(fluxo);
-			Disponiveis=(ArrayList<Jogo>)objarq.readObject();
+			Alugados=(ArrayList<Jogo>)objarq.readObject();
 			for(i=0;i<Alugados.size();i++) {
 				System.out.println(i+": "+Alugados.get(i).getNome()+" "+Alugados.get(i).getTipo()+" "+Alugados.get(i).getClassificacao()+" "+Alugados.get(i).getPreco());
 			}
