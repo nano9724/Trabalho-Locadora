@@ -1,57 +1,89 @@
 package pessoa;
 
-import java.io.FileNotFoundException;
+import java.util.Scanner;
+import static java.lang.System.*;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.ObjectOutputStream;
-import java.io.Serializable;
-import java.util.Scanner;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.File;
 
-public class Funcionario implements Serializable{
-	  private String nome,login,senha;
-	  private int cpf;
+public class Funcionario {
+	private static Scanner x;
 
-	  public Funcionario(String nome,int cpf,String login,String senha){
-	    this.nome=nome;
-	    this.cpf=cpf;
-	    this.login=login;
-	    this.senha=senha;
-	  }
-	  
-	  public void logar(){
-	        Scanner input = new Scanner(System.in);
-	        System.out.println("Insira o seu login.");
-	        String login = input.nextLine();
-	        System.out.println("Insira a sua senha.");
-	        String senha = input.nextLine();
+	private String nome, login, senha;
+	private int cpf;
 
-	        if(login.equals("admin") && senha.equals("admin")) {
-	            System.out.println("Ol� " + login + " seja bem vindo ao Vapor!");
-	        }
-	        else{
-	            System.out.println("Senha incorreta, por favor tente novamente.");
-	            logar();
-	        }
-	    }
+	public Funcionario(String nome, int cpf, String login, String senha) {
+		this.nome = nome;
+		this.cpf = cpf;
+		this.login = login;
+		this.senha = senha;
+	}
 
-	    public void criaUsuario(){
-			FileOutputStream fluxo;
-			
-			try {
-				fluxo= new FileOutputStream("func.ser");
-				ObjectOutputStream objarq;
-				objarq = new ObjectOutputStream(fluxo);
-				objarq.writeObject(this);
-				System.out.println("Salvo no arquivo");
-				objarq.close();
-			} catch (FileNotFoundException e) {
-				System.out.println("Passou por aqui");
-				e.printStackTrace();
+	public static void main(String[] args) {
+		String username = "";
+		String password = "";
+		String filepath = "account.txt";
+    criaConta();
+
+		Scanner input = new Scanner(System.in);
+		System.out.println("**** Digite o login ****");
+		username = input.next();
+		System.out.println("**** Digite a senha ****");
+		password = input.next();
+		verificaLogin(username, password, filepath);
+	}
+
+	public static boolean verificaLogin(String username, String password, String filepath) {
+		boolean found = false;
+		String tempLogin = "";
+		String tempSenha = "";
+
+		try {
+			x = new Scanner(new File(filepath));
+			x.useDelimiter("[,\n]");
+
+			while (x.hasNext() && !found) {
+				tempLogin = x.next();
+				tempSenha = x.next();
+
+				if (tempLogin.trim().equals(username) && tempSenha.trim().equals(password)) {
+					found = true;
+				}
 			}
-			catch (IOException e) {
-				e.printStackTrace();
+			x.close();
+			if (found) {
+				System.out.println("**** Usuário e senha corretos ****");
+				return true;
+			} else {
+				System.out.println("**** Usuário e senha incorretos ****");
+				return false;
 			}
+		} catch (Exception e) {
+			System.out.println("Algum problema aconteceu, por favor tente novamente.");
+		}
+		return found;
+	}
 
-		
-	      }
+	public static void criaConta() {
+		Scanner input = new Scanner(System.in);
+		try {
+			FileOutputStream fos = new FileOutputStream("account.txt", true);
+			System.out.println("Qual será o nome do usuário?");
+			String createLogin = input.next();
+			System.out.println("Qual será a senha?");
+			String createSenha = input.next();
+
+			fos.write(createLogin.getBytes());
+			fos.write(",".getBytes());
+			fos.write(createSenha.getBytes());
+			fos.write(10);
+			fos.close();
+			System.out.println("Conta cadastrada com sucesso!");
+
+		} catch (IOException e) {
+			out.println("ERROR!");
+		}
+	}
 }
