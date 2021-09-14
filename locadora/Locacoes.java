@@ -166,22 +166,15 @@ public class Locacoes implements Serializable{
 
 	}
 
-	public static void criaArquivos(String usur) {
+	public static void criaArquivos( ) {
 		FileOutputStream fluxo;
-		FileOutputStream fluxo2;
 		try {
 			fluxo= new FileOutputStream("dispon.ser");
 			ObjectOutputStream objarq;
 			objarq = new ObjectOutputStream(fluxo);
 			Disponiveis.clear();
 			objarq.writeObject(Disponiveis);
-			fluxo2= new FileOutputStream(usur);
-			ObjectOutputStream objarq2;
-			objarq2 = new ObjectOutputStream(fluxo2);
-			Alugados.clear();
-			objarq2.writeObject(Alugados);
 			objarq.close();
-			objarq2.close();
 		}catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
