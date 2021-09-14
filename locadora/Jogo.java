@@ -17,6 +17,13 @@ public class Jogo implements Serializable{
 	  Jogo(){
 		  
 	  }
+	
+	public String torString(){
+	 String print= this.getNome()"\n"+ this.getTipo()"\n"+ this.getClassificacao()"\n"+ this.getPreco();
+	return print;
+	}
+	
+	
 	  
 	  public String getNome() {
 		  return this.nome;
