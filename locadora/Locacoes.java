@@ -47,7 +47,7 @@ public class Locacoes implements Serializable{
 			ObjectOutputStream objarq3;
 			objarq3 = new ObjectOutputStream(fluxo3);
 			objarq3.writeObject(Disponiveis);
-			fluxo4= new FileOutputStream(usur.getCaminhoUsuario());
+			fluxo4= new FileOutputStream(usur.getCaminhoJogos());
 			ObjectOutputStream objarq4;
 			objarq4 = new ObjectOutputStream(fluxo4);
 			objarq4.writeObject(Alugados);
@@ -78,7 +78,7 @@ public class Locacoes implements Serializable{
 		FileOutputStream fluxo4;
 		int i,num;
 		try {
-			fluxo= new FileInputStream(usur.getCaminhoUsuario());
+			fluxo= new FileInputStream(usur.getCaminhoJogos());
 			ObjectInputStream objarq;
 			objarq = new ObjectInputStream(fluxo);
 			Alugados.clear();
@@ -102,7 +102,7 @@ public class Locacoes implements Serializable{
 			ObjectOutputStream objarq3;
 			objarq3 = new ObjectOutputStream(fluxo3);
 			objarq3.writeObject(Disponiveis);
-			fluxo4= new FileOutputStream(usur.getCaminhoUsuario());
+			fluxo4= new FileOutputStream(usur.getCaminhoJogos());
 			ObjectOutputStream objarq4;
 			objarq4 = new ObjectOutputStream(fluxo4);
 			objarq4.writeObject(Alugados);
