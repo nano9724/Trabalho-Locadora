@@ -16,7 +16,7 @@ public class Locacoes implements Serializable{
 	static ArrayList<Jogo> Disponiveis= new ArrayList<Jogo>();
 	static ArrayList<Jogo> Alugados= new ArrayList<Jogo>();
 
-	public static Jogo locar(Usuario usur){
+	public static void locar(Usuario usur){
 		FileInputStream fluxo;
 		FileInputStream fluxo2;
 		FileOutputStream fluxo3;
@@ -55,7 +55,7 @@ public class Locacoes implements Serializable{
 			objarq2.close();
 			objarq3.close();
 			objarq4.close();
-			return req;
+			
 			
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -69,9 +69,9 @@ public class Locacoes implements Serializable{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-			return null;
+			
 	}
-	public static Jogo devolucao(Usuario usur){
+	public static void devolucao(Usuario usur){
 		FileInputStream fluxo;
 		FileInputStream fluxo2;
 		FileOutputStream fluxo3;
@@ -110,7 +110,7 @@ public class Locacoes implements Serializable{
 			objarq2.close();
 			objarq3.close();
 			objarq4.close();
-			return req;
+			
 			
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -124,7 +124,7 @@ public class Locacoes implements Serializable{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return null;
+		
 	}
 
 	public static void addJogo(Jogo j) {
