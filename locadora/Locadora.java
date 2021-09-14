@@ -13,7 +13,7 @@ import pessoa.Usuario;
 public class Locadora {
     
    
-     public static void UserIncialPage(Usuario u){
+     public static void UserIntialPage(Usuario u){
          Scanner teclado=new Scanner(System.in);
             System.out.println ("Digite:\n"+"1 - Alugar\n"+"2 - Ver seus Alugueis\n"+"3 - Devolução\n"+"4 - Ver Jogos Disponiveis na Locadora\n");   
               int user=teclado.nextInt();
@@ -66,7 +66,7 @@ public class Locadora {
                                             usuarios.addAll((ArrayList<Usuario>)Arquivo.recuperarObjeto(caminhoUsuarios));
                                                 for(int i=0;i<usuarios.size();i++) {
                                                     if(usuarios.get(i).logar(log, senha)){
-                                                        UserIncialPage(usuarios.get(i));
+                                                        UserIntialPage(usuarios.get(i));
                                                     }}
       
                               case 2: 
