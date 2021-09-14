@@ -36,27 +36,34 @@ public class Locacoes implements Serializable{
 			num=entrada.nextInt();
 			Jogo req= new Jogo();
 			req=Disponiveis.get(num);
-			Disponiveis.remove(num);
-			fluxo2= new FileInputStream(usur.getCaminhoJogos());
-			ObjectInputStream objarq2;
-			objarq2 = new ObjectInputStream(fluxo2);
-			Alugados.clear();
-			Alugados.addAll((ArrayList<Jogo>)objarq2.readObject());
-			Alugados.add(req);
-			fluxo3= new FileOutputStream("dispon.ser");
-			ObjectOutputStream objarq3;
-			objarq3 = new ObjectOutputStream(fluxo3);
-			objarq3.writeObject(Disponiveis);
-			fluxo4= new FileOutputStream(usur.getCaminhoJogos());
-			ObjectOutputStream objarq4;
-			objarq4 = new ObjectOutputStream(fluxo4);
-			objarq4.writeObject(Alugados);
-			objarq.close();
-			objarq2.close();
-			objarq3.close();
-			objarq4.close();
-			
-			
+			if(usur.getConta().getSaldo()-req.getPreco()<0) {
+				objarq.close();
+				return;
+			}
+			else {
+				usur.getConta().setSaldo(usur.getConta().getSaldo()-req.getPreco());
+				Disponiveis.remove(num);
+				fluxo2= new FileInputStream(usur.getCaminhoJogos());
+				ObjectInputStream objarq2;
+				objarq2 = new ObjectInputStream(fluxo2);
+				Alugados.clear();
+				Alugados.addAll((ArrayList<Jogo>)objarq2.readObject());
+				Alugados.add(req);
+				fluxo3= new FileOutputStream("dispon.ser");
+				ObjectOutputStream objarq3;
+				objarq3 = new ObjectOutputStream(fluxo3);
+				objarq3.writeObject(Disponiveis);
+				fluxo4= new FileOutputStream(usur.getCaminhoJogos());
+				ObjectOutputStream objarq4;
+				objarq4 = new ObjectOutputStream(fluxo4);
+				objarq4.writeObject(Alugados);
+				objarq.close();
+				objarq2.close();
+				objarq3.close();
+				objarq4.close();
+			}
+
+
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -69,7 +76,7 @@ public class Locacoes implements Serializable{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-			
+
 	}
 	public static void devolucao(Usuario usur){
 		FileInputStream fluxo;
@@ -110,8 +117,8 @@ public class Locacoes implements Serializable{
 			objarq2.close();
 			objarq3.close();
 			objarq4.close();
-			
-			
+
+
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -124,7 +131,7 @@ public class Locacoes implements Serializable{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 	}
 
 	public static void addJogo(Jogo j) {
@@ -144,7 +151,7 @@ public class Locacoes implements Serializable{
 			System.out.println("Salvo no arquivo");
 			objarq.close();
 			objarq2.close();
-			
+
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -156,9 +163,9 @@ public class Locacoes implements Serializable{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 	}
-	
+
 	public static void criaArquivos(String usur) {
 		FileOutputStream fluxo;
 		FileOutputStream fluxo2;
@@ -242,6 +249,6 @@ public class Locacoes implements Serializable{
 
 
 	}
-	
+
 
 }
