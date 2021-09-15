@@ -1,4 +1,3 @@
-
 package pessoa;
 
 
@@ -47,14 +46,16 @@ public class Arquivo {
             ObjectInputStream objectInput= new ObjectInputStream(fileInput);
             
             Object retorno=objectInput.readObject();
-            
-            objectInput.close();
+
             objectInput.close();
             
             return retorno;}
         
-        catch(Exception e)
-        {e.printStackTrace();return null;} }
+        catch(Exception e){
+        	//e.printStackTrace();
+        	return null;
+        	} 
+        }
     
     
     
