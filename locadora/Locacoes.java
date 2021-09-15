@@ -36,14 +36,15 @@ public class Locacoes implements Serializable{
 			num=entrada.nextInt();
 			Jogo req= new Jogo();
 			req=Disponiveis.get(num);
-			if(usur.getConta().getSaldo()-req.getPreco()<0) {
+			if(usur.getSaldo()-req.getPreco()<0) {
 				objarq.close();
+				System.out.println("Voce nao tem fundos suficiente");
 				return;
 			}
 			else {
-				usur.getConta().setSaldo(usur.getConta().getSaldo()-req.getPreco());
+				usur.setSaldo(usur.getSaldo()-req.getPreco());
 				Disponiveis.remove(num);
-				fluxo2= new FileInputStream(usur.getCaminhoJogos());
+				fluxo2= new FileInputStream(usur.getCaminhoUsuario());
 				ObjectInputStream objarq2;
 				objarq2 = new ObjectInputStream(fluxo2);
 				Alugados.clear();
@@ -53,7 +54,7 @@ public class Locacoes implements Serializable{
 				ObjectOutputStream objarq3;
 				objarq3 = new ObjectOutputStream(fluxo3);
 				objarq3.writeObject(Disponiveis);
-				fluxo4= new FileOutputStream(usur.getCaminhoJogos());
+				fluxo4= new FileOutputStream(usur.getCaminhoUsuario());
 				ObjectOutputStream objarq4;
 				objarq4 = new ObjectOutputStream(fluxo4);
 				objarq4.writeObject(Alugados);
@@ -85,7 +86,7 @@ public class Locacoes implements Serializable{
 		FileOutputStream fluxo4;
 		int i,num;
 		try {
-			fluxo= new FileInputStream(usur.getCaminhoJogos());
+			fluxo= new FileInputStream(usur.getCaminhoUsuario());
 			ObjectInputStream objarq;
 			objarq = new ObjectInputStream(fluxo);
 			Alugados.clear();
@@ -109,7 +110,7 @@ public class Locacoes implements Serializable{
 			ObjectOutputStream objarq3;
 			objarq3 = new ObjectOutputStream(fluxo3);
 			objarq3.writeObject(Disponiveis);
-			fluxo4= new FileOutputStream(usur.getCaminhoJogos());
+			fluxo4= new FileOutputStream(usur.getCaminhoUsuario());
 			ObjectOutputStream objarq4;
 			objarq4 = new ObjectOutputStream(fluxo4);
 			objarq4.writeObject(Alugados);
@@ -217,7 +218,7 @@ public class Locacoes implements Serializable{
 		FileInputStream fluxo;
 		try {
 			int i;
-			fluxo= new FileInputStream(usur.getCaminhoJogos());
+			fluxo= new FileInputStream(usur.getCaminhoUsuario());
 			ObjectInputStream objarq;
 			objarq = new ObjectInputStream(fluxo);
 			Alugados=(ArrayList<Jogo>)objarq.readObject();
