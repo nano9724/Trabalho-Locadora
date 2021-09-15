@@ -94,9 +94,18 @@ public class Locadora {
 						}}
 					if(aju==false) {
 						System.out.println("Login ou Senha incorreto");
+						System.out.println("Voce deseja criar uma conta? Se sim digite 2, se nao digite 1");
+						int k=teclado.nextInt();
+						if(k==2) {
+							user=k;
+							aju=true;
+						}
 					}
 				}
-				break;
+				if(user!=2) {
+					break;
+				}
+				
 			case 2: 
 				System.out.println("*** Cadastro ***");
 				System.out.println("*** Crie um Login ***");
