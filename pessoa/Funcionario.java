@@ -71,7 +71,7 @@ public class Funcionario {
 		Scanner input = new Scanner(System.in);
 		try {
 			FileOutputStream fos = new FileOutputStream("account.txt", true);
-			System.out.println("Qual será o nome do usuário?");
+			System.out.println("Qual será o login?");
 			String createLogin = input.next();
 			System.out.println("Qual será a senha?");
 			String createSenha = input.next();
