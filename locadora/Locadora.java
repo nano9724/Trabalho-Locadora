@@ -137,7 +137,7 @@ public class Locadora {
 					objarq2.close();
 
 				} catch (FileNotFoundException e) {
-					System.out.println("Arquivo nao encontrado");
+					System.out.println("Arquivo nao encontrado...\nCriando arquivo");
 					Usuario.criaArquivoUsuario();
 				}
 				catch (IOException e) {
